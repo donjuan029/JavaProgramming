@@ -4,6 +4,7 @@ Programação Oracle Java Programming - Senai
 Exercício 1
 
 public class JP_1_1 {
+
     public static void main(String[] args) {
         byte idade = 36;
         short ano = 1989;
