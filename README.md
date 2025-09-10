@@ -4,7 +4,7 @@ Programação Oracle Java Programming - Senai
 
 Exercício 1
 
-public class JP_1_1 {
+    public class JP_1_1 {
 
     public static void main(String[] args) {
         byte idade = 36;
@@ -32,7 +32,7 @@ Exercício 2
     public class JP_1_2 {
   
     
-public static void main(String[] args) {
+    public static void main(String[] args) {
 
         byte idade = 25;
         long populacaoMundial = 8000000000L;
