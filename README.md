@@ -29,7 +29,7 @@ public class JP_1_1 {
 Exercício 2
 
 
-public class JP_1_2 {
+    public class JP_1_2 {
   
     
 public static void main(String[] args) {
