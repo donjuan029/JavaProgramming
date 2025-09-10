@@ -14,8 +14,6 @@ public class JP_1_1 {
         char letra = 't';
         boolean ehVerdadeiro = true;
         
-
-
         System.out.println(idade);
         System.out.println(ano);
         System.out.println(populacao);
