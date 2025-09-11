@@ -123,7 +123,7 @@ Exercício 5
         boolean condicao3 = !estudanteAprovado;
         System.out.println("Não foi aprovado: " + condicao3);
     }
-}
+    }
 
     //Atividade 5: Booleans e Lógica
     //Objetivo: Compreender o uso do tipo boolean e operadores lógicos.
