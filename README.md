@@ -236,8 +236,8 @@ Exercício Oracle Input Variables
 
 Exercício Oracle Age Checker
 
-import java.util.Scanner;
-
+    import java.util.Scanner;
+    
     public class AgeChecker {
     
         public static void main(String[] args) {
@@ -256,13 +256,13 @@ import java.util.Scanner;
     
             holdLicence = in.next().charAt(0);
     
-            if(age > 20)
+            if((age > 20) && (holdLicence == 'y'))
     
             //Você precisa de ambos 21 ou acima e ter uma licença para dirigir um carro.
     
-                System.out.println("You are an adult");
+                System.out.println("You are an adult and can hire a car");
             else
-                System.out.println("You are not an adult");
+                System.out.println("You are not an adult so cannot hire a car");
             //endif
             in.close();
     
