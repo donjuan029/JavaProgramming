@@ -236,19 +236,25 @@ Exercício Oracle Input Variables
 
 Exercício Oracle Age Checker
 
-    import java.util.Scanner;
-    
+import java.util.Scanner;
+
     public class AgeChecker {
     
         public static void main(String[] args) {
             Scanner in = new Scanner(System.in);
             int age;
+            @SuppressWarnings("unused")
+            char holdLicence;
     
             System.out.print("Please enter your age: ");
     
             //Leia o valor do caractere para identificar se um usuário está permitido a dirigir.
     
             age = in.nextInt();
+    
+            System.out.println("Do you hold a current driving licence? ");
+    
+            holdLicence = in.next().charAt(0);
     
             if(age > 20)
     
