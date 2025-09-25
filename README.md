@@ -1011,3 +1011,109 @@ Exercício 10 Etapa 2 - Forma - Cálculo Geométrico
         }
     }
 
+Exercício 1 Etapa 3 - Exemplo ArrayList
+
+    import java.util.ArrayList;
+    
+    public class ExemploArrayList {
+        public static void main(String[] args) {
+            // Criamos uma lista que só aceita Strings (nomes de alunos)
+            // O uso de <String> é um exemplo de generics, que garante que apenas Strings sejam armazenadas.
+            // Isso evita erros como tentar adicionar um número ou outro tipo de dado.
+            ArrayList<String> listaPresenca = new ArrayList<>();
+    
+            // 1. Adicionando nomes à lista (na ordem de chegada)
+            System.out.println("--- Adicionando nomes ---");
+            listaPresenca.add("Ana");
+            listaPresenca.add("Bruno");
+            listaPresenca.add("Carla");
+            System.out.println("Lista inicial: " + listaPresenca); // [Ana, Bruno, Carla]
+    
+            // 2. Acessando um nome pela posição (índice)
+            String primeiroNome = listaPresenca.get(0); // índice 0 = primeiro da lista
+            System.out.println("O primeiro nome da lista é: " + primeiroNome); // Ana
+    
+            // 3. Removendo um nome da lista
+            System.out.println("\n--- Removendo um nome ---");
+            listaPresenca.remove("Bruno"); // Remove pelo valor
+            System.out.println("Lista após remover 'Bruno': " + listaPresenca); // [Ana, Carla]
+        }
+    }
+
+Exercício 2 Etapa 3 - Exemplo HashSet
+
+    import java.util.HashSet;
+    import java.util.Set;
+    
+    public class ExemploHashSet {
+        public static void main(String[] args) {
+            // Criamos um conjunto que só aceita Strings (tarefas)
+            // O uso de Set<String> com HashSet garante tipagem segura por meio de generics.
+            // Isso evita que tipos diferentes sejam adicionados por engano, como números ou objetos não relacionados.
+            Set<String> tarefas = new HashSet<>();
+    
+            // 1. Adicionar tarefas ao conjunto
+            System.out.println("--- Adicionando tarefas ---");
+            tarefas.add("Comprar pão");
+            tarefas.add("Estudar Java");
+            tarefas.add("Comprar pão"); // Tentando adicionar uma duplicata
+            tarefas.add("Lavar o carro");
+    
+            // A principal característica do HashSet é que ele não permite duplicatas.
+            // A segunda chamada add("Comprar pão") é ignorada silenciosamente.
+            System.out.println("Conjunto de tarefas: " + tarefas);
+    
+            // Importante: HashSet não garante a ordem dos elementos.
+            // A ordem de impressão pode variar a cada execução.
+            // Exemplo possível: [Lavar o carro, Comprar pão, Estudar Java]
+    
+            // 2. Verificar se uma tarefa já existe
+            boolean temTarefa = tarefas.contains("Estudar Java"); // contains(): verifica se o elemento está presente
+            System.out.println("\nA tarefa 'Estudar Java' está no conjunto? " + temTarefa); // Saída: true
+            
+            // 3. Remover uma tarefa
+            System.out.println("\n--- Removendo uma tarefa ---");
+            tarefas.remove("Lavar o carro"); // remove(): exclui o elemento pelo valor
+            System.out.println("Conjunto após remover 'Lavar o carro': " + tarefas);
+        }
+    }
+
+Exercício 3 Etapa 3 - Exemplo HashMap
+
+    import java.util.HashMap;
+    import java.util.Map;
+    
+    public class ExemploHashMap {
+        public static void main(String[] args) {
+            // Criamos um mapa onde a chave é um Integer (matrícula) e o valor é uma String (nome do aluno)
+            // Importante: Map não é uma Collection, mas uma estrutura separada da API de coleções do Java.
+            // Por isso, ele usa dois tipos genéricos: um para a chave e outro para o valor.
+            Map<Integer, String> alunos = new HashMap<>();
+    
+            // 1. Adicionar alunos (pares de matrícula-nome)
+            System.out.println("--- Cadastrando alunos ---");
+            // put(): insere um par chave-valor no mapa. Se a chave já existir, o valor é substituído.
+            alunos.put(101, "João Silva");
+            alunos.put(102, "Maria Oliveira");
+            alunos.put(103, "Carlos Santos");
+            System.out.println("Mapa de alunos: " + alunos); // Ex: {101=João Silva, 102=Maria Oliveira, 103=Carlos Santos}
+    
+            // 2. Encontrar o nome de um aluno pela sua matrícula (chave)
+            System.out.println("\n--- Buscando um aluno ---");
+            // get(): retorna o valor associado à chave informada.
+            // Essa operação é extremamente eficiente, pois não é necessário percorrer toda a estrutura.
+            String nomeAluno = alunos.get(102);
+            System.out.println("O nome do aluno com matrícula 102 é: " + nomeAluno); // Saída: Maria Oliveira
+    
+            // 3. Verificar se uma matrícula já existe
+            // containsKey(): verifica se a chave está presente no mapa
+            boolean temMatricula = alunos.containsKey(101);
+            System.out.println("A matrícula 101 existe? " + temMatricula); // Saída: true
+    
+            // 4. Remover um aluno pela sua matrícula
+            System.out.println("\n--- Removendo um aluno ---");
+            // remove(): exclui o par associado à chave informada
+            alunos.remove(103);
+            System.out.println("Mapa após remover o aluno 103: " + alunos);
+        }
+    }
