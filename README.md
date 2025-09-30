@@ -156,7 +156,7 @@ Desafio 2
         int nota2 = 8;
         int nota3 = 9;
 
-        // Conversão explícita para garantir precisão decimal
+        //Conversão explícita para garantir precisão decimal
         double media = (nota1 + nota2 + nota3) / 3.0;
 
         System.out.println("A média é: " + media); // Deve imprimir 8.0
@@ -179,12 +179,12 @@ Exercício 6
     
         public static void main(String[] args) {
             
-            // Declaracao de variaveis com nomes descritivos em camelCase.
+            //Declaracao de variaveis com nomes descritivos em camelCase.
             int intergerValue = 25;
             char characterValue = 'B';
             boolean isActive = true;
             
-            // Exibicao dos valores com mensagens claras.
+            //Exibicao dos valores com mensagens claras.
             System.out.println("Valor inteiro: " + intergerValue);
             System.out.println("Valor do caractere: " + characterValue);
             System.out.println("Valor booleano: " + isActive);
@@ -272,41 +272,41 @@ Exercício 1 Etapa 2
         
     private String Nome; // Atributo privado
     
-        // Getter para obter o valor de Nome
+        //Getter para obter o valor de Nome
         public String getNome() {
             return Nome;
         }
     
-        // Setter para definir um novo valor para Nome
+        //Setter para definir um novo valor para Nome
         public void setNome(String n) {
-            // Poderia adicionar validações aqui, por exemplo
+            //Poderia adicionar validações aqui, por exemplo
             this.Nome = n;
         }
         private int Idade; // Atributo privado
     
-        // Getter para obter o valor de Idade
+        //Getter para obter o valor de Idade
         public int getIdade() {
             return Idade;
         }
     
-        // Setter para definir um novo valor para Idade
+        //Setter para definir um novo valor para Idade
         public void setIdade(int id) {
-            // Poderia adicionar validações aqui, por exemplo
+            //Poderia adicionar validações aqui, por exemplo
             this.Idade = id;
         }
         public static void main(String[] args) {
             
         
-        // 2. Getters e Setters públicos
+        //Getters e Setters públicos
             Pessoa pessoa = new Pessoa();
     
             
-            // Os setters para atribuir valores
+            //Os setters para atribuir valores
             pessoa.setNome("João");
             
             pessoa.setIdade(30);
             
-            // Os getters para obter e imprimir os valores
+            //Os getters para obter e imprimir os valores
             System.out.println("Nome: " + pessoa.getNome());
             System.out.println("Idade: " + pessoa.getIdade());
         }
@@ -322,39 +322,39 @@ Exercício 2 Etapa 2
 
     public class JP_2_2 {
     
-        // 1. Atributos privados
+        //Atributos privados
         private String nome;
         private int idade;
     
-        // Getter para Nome
+        //Getter para Nome
         public String getNome() {
             return nome;
         }
     
-        // Setter para Nome
+        //Setter para Nome
         public void setNome(String n) {
             this.nome = n;
         }
     
-        // Getter para Idade
+        //Getter para Idade
         public int getIdade() {
             return idade;
         }
     
-        // Setter para Idade
+        //Setter para Idade
         public void setIdade(int id) {
             this.idade = id;
         }
     
         public static void main(String[] args) {
-            // Criando objeto da própria classe
+            //Criando objeto da própria classe
             JP_2_2 pessoa = new JP_2_2();
     
-            // Setando valores
+            //Setando valores
             pessoa.setNome("João");
             pessoa.setIdade(7);
     
-            // Validação
+            //Validação
             if (pessoa.getIdade() >= 0) {
                 System.out.println("Idade definida: " + pessoa.getIdade() + " anos");
             } else {
@@ -371,50 +371,50 @@ Exercício 3 Etapa 2
 
     public class Produto {
         
-        // 1. Atributos privados
+        //Atributos privados
         private String nome;
         private double preco;
         private int qtdemestoque;
     
-        // Getter para Nome
+        //Getter para Nome
         public String getNome() {
             return nome;
         }
     
-        // Setter para Nome
+        //Setter para Nome
         public void setNome(String n) {
             this.nome = n;
         }
     
-        // Getter para Preco
+        //Getter para Preco
         public double getPreco() {
             return preco;
         }
     
-        // Setter para Preco
+        //Setter para Preco
         public void setPreco(double pr) {
             this.preco = pr;
         }    
     
-        // Getter para QtdEmEstoque
+        //Getter para QtdEmEstoque
         public double getQtdEmEstoque() {
             return qtdemestoque;
         }
     
-        // Setter para QtdEmEstoque
+        //Setter para QtdEmEstoque
         public void setQtdEmEstoque(int qt) {
             this.qtdemestoque = qt;
         }
         public static void main(String[] args) {
-            // Criando objeto da própria classe
+            //Criando objeto da própria classe
             Produto produto = new Produto();
     
-            // Setando valores
+            //Setando valores
             produto.setNome("Café");
             produto.setPreco(75);
             produto.setQtdEmEstoque(16);
     
-            // Imprimindo nome
+            //Imprimindo nome
             System.out.println("Nome Do Produto: " + produto.getNome());
             System.out.println("Preço: R$ " + produto.getPreco());
             System.out.println("Quantidade em Estoque: " + produto.getQtdEmEstoque());
@@ -695,13 +695,13 @@ Exercício 6 Etapa 2 - Livro
             this.autor = autor;
         }
     
-        // A função info retorna a formatação que no caso é a descrisão do título e autor do livro
+        //A função info retorna a formatação que no caso é a descrisão do título e autor do livro
         public String getInfo() {
             return "Título: " + this.titulo + ", Autor: " + this.autor;
         }
     }
     
-    // Classe Biblioteca.java
+    //Classe Biblioteca.java
     
     
     class Biblioteca {
@@ -723,7 +723,7 @@ Exercício 6 Etapa 2 - Livro
         }
     }
     
-    // Classe Main.java
+    //Classe Main.java
     class Main {
     
         //O Array nesse caso serve para armarzenar cada livro com seu título e autor
@@ -852,7 +852,7 @@ Exercício 8 Etapa 2 - Herança Array Livro
     }
     
     
-    // A classe principal
+    //A classe principal
     public class HerançaArrayLivro {
         public static void main(String[] args) {
             Biblioteca biblioteca = new Biblioteca();
@@ -1017,23 +1017,23 @@ Exercício 1 Etapa 3 - Exemplo ArrayList
     
     public class ExemploArrayList {
         public static void main(String[] args) {
-            // Criamos uma lista que só aceita Strings (nomes de alunos)
-            // O uso de <String> é um exemplo de generics, que garante que apenas Strings sejam armazenadas.
-            // Isso evita erros como tentar adicionar um número ou outro tipo de dado.
+            //Criamos uma lista que só aceita Strings (nomes de alunos)
+            //O uso de <String> é um exemplo de generics, que garante que apenas Strings sejam armazenadas.
+            //Isso evita erros como tentar adicionar um número ou outro tipo de dado.
             ArrayList<String> listaPresenca = new ArrayList<>();
     
-            // 1. Adicionando nomes à lista (na ordem de chegada)
+            //Adicionando nomes à lista (na ordem de chegada)
             System.out.println("--- Adicionando nomes ---");
             listaPresenca.add("Ana");
             listaPresenca.add("Bruno");
             listaPresenca.add("Carla");
             System.out.println("Lista inicial: " + listaPresenca); // [Ana, Bruno, Carla]
     
-            // 2. Acessando um nome pela posição (índice)
+            //Acessando um nome pela posição (índice)
             String primeiroNome = listaPresenca.get(0); // índice 0 = primeiro da lista
             System.out.println("O primeiro nome da lista é: " + primeiroNome); // Ana
     
-            // 3. Removendo um nome da lista
+            //Removendo um nome da lista
             System.out.println("\n--- Removendo um nome ---");
             listaPresenca.remove("Bruno"); // Remove pelo valor
             System.out.println("Lista após remover 'Bruno': " + listaPresenca); // [Ana, Carla]
@@ -1047,31 +1047,31 @@ Exercício 2 Etapa 3 - Exemplo HashSet
     
     public class ExemploHashSet {
         public static void main(String[] args) {
-            // Criamos um conjunto que só aceita Strings (tarefas)
-            // O uso de Set<String> com HashSet garante tipagem segura por meio de generics.
-            // Isso evita que tipos diferentes sejam adicionados por engano, como números ou objetos não relacionados.
+            //Criamos um conjunto que só aceita Strings (tarefas)
+            //O uso de Set<String> com HashSet garante tipagem segura por meio de generics.
+            //Isso evita que tipos diferentes sejam adicionados por engano, como números ou objetos não relacionados.
             Set<String> tarefas = new HashSet<>();
     
-            // 1. Adicionar tarefas ao conjunto
+            //Adicionar tarefas ao conjunto
             System.out.println("--- Adicionando tarefas ---");
             tarefas.add("Comprar pão");
             tarefas.add("Estudar Java");
             tarefas.add("Comprar pão"); // Tentando adicionar uma duplicata
             tarefas.add("Lavar o carro");
     
-            // A principal característica do HashSet é que ele não permite duplicatas.
-            // A segunda chamada add("Comprar pão") é ignorada silenciosamente.
+            //A principal característica do HashSet é que ele não permite duplicatas.
+            //A segunda chamada add("Comprar pão") é ignorada silenciosamente.
             System.out.println("Conjunto de tarefas: " + tarefas);
     
-            // Importante: HashSet não garante a ordem dos elementos.
-            // A ordem de impressão pode variar a cada execução.
-            // Exemplo possível: [Lavar o carro, Comprar pão, Estudar Java]
+            //Importante: HashSet não garante a ordem dos elementos.
+            //A ordem de impressão pode variar a cada execução.
+            //Exemplo possível: [Lavar o carro, Comprar pão, Estudar Java]
     
-            // 2. Verificar se uma tarefa já existe
+            //Verificar se uma tarefa já existe
             boolean temTarefa = tarefas.contains("Estudar Java"); // contains(): verifica se o elemento está presente
             System.out.println("\nA tarefa 'Estudar Java' está no conjunto? " + temTarefa); // Saída: true
             
-            // 3. Remover uma tarefa
+            //Remover uma tarefa
             System.out.println("\n--- Removendo uma tarefa ---");
             tarefas.remove("Lavar o carro"); // remove(): exclui o elemento pelo valor
             System.out.println("Conjunto após remover 'Lavar o carro': " + tarefas);
@@ -1085,34 +1085,34 @@ Exercício 3 Etapa 3 - Exemplo HashMap
     
     public class ExemploHashMap {
         public static void main(String[] args) {
-            // Criamos um mapa onde a chave é um Integer (matrícula) e o valor é uma String (nome do aluno)
-            // Importante: Map não é uma Collection, mas uma estrutura separada da API de coleções do Java.
-            // Por isso, ele usa dois tipos genéricos: um para a chave e outro para o valor.
+            //Criamos um mapa onde a chave é um Integer (matrícula) e o valor é uma String (nome do aluno)
+            //Importante: Map não é uma Collection, mas uma estrutura separada da API de coleções do Java.
+            //Por isso, ele usa dois tipos genéricos: um para a chave e outro para o valor.
             Map<Integer, String> alunos = new HashMap<>();
     
-            // 1. Adicionar alunos (pares de matrícula-nome)
+            //Adicionar alunos (pares de matrícula-nome)
             System.out.println("--- Cadastrando alunos ---");
-            // put(): insere um par chave-valor no mapa. Se a chave já existir, o valor é substituído.
+            //put(): insere um par chave-valor no mapa. Se a chave já existir, o valor é substituído.
             alunos.put(101, "João Silva");
             alunos.put(102, "Maria Oliveira");
             alunos.put(103, "Carlos Santos");
             System.out.println("Mapa de alunos: " + alunos); // Ex: {101=João Silva, 102=Maria Oliveira, 103=Carlos Santos}
     
-            // 2. Encontrar o nome de um aluno pela sua matrícula (chave)
+            //Encontrar o nome de um aluno pela sua matrícula (chave)
             System.out.println("\n--- Buscando um aluno ---");
-            // get(): retorna o valor associado à chave informada.
-            // Essa operação é extremamente eficiente, pois não é necessário percorrer toda a estrutura.
+            //get(): retorna o valor associado à chave informada.
+            //Essa operação é extremamente eficiente, pois não é necessário percorrer toda a estrutura.
             String nomeAluno = alunos.get(102);
-            System.out.println("O nome do aluno com matrícula 102 é: " + nomeAluno); // Saída: Maria Oliveira
+            System.out.println("O nome do aluno com matrícula 102 é: " + nomeAluno); //Saída: Maria Oliveira
     
-            // 3. Verificar se uma matrícula já existe
-            // containsKey(): verifica se a chave está presente no mapa
+            //Verificar se uma matrícula já existe
+            //containsKey(): verifica se a chave está presente no mapa
             boolean temMatricula = alunos.containsKey(101);
-            System.out.println("A matrícula 101 existe? " + temMatricula); // Saída: true
+            System.out.println("A matrícula 101 existe? " + temMatricula); //Saída: true
     
-            // 4. Remover um aluno pela sua matrícula
+            //Remover um aluno pela sua matrícula
             System.out.println("\n--- Removendo um aluno ---");
-            // remove(): exclui o par associado à chave informada
+            //remove(): exclui o par associado à chave informada
             alunos.remove(103);
             System.out.println("Mapa após remover o aluno 103: " + alunos);
         }
@@ -1123,37 +1123,37 @@ Exercício 4 Etapa 3 - Generics Class
     import java.util.ArrayList;
     import java.util.List;
     
-    // Classe genérica personalizada que armazena um item do tipo T
+    //Classe genérica personalizada que armazena um item do tipo T
     class Caixa<T> {
         private T item;
     
-        // Método para adicionar um item à caixa
+        //Método para adicionar um item à caixa
         public void adicionar(T item) {
             this.item = item;
         }
     
-        // Método para obter o item da caixa
+        //Método para obter o item da caixa
         public T obter() {
             return this.item;
         }
     
-        // Método extra para verificar se há item na caixa
+        //Método extra para verificar se há item na caixa
         public boolean temItem() {
             return this.item != null;
         }
     
-        // Método extra para limpar o conteúdo da caixa
+        //Método extra para limpar o conteúdo da caixa
         public void limpar() {
             this.item = null;
         }
     }
     
-    // Enum que representa os gêneros de filmes
+    //Enum que representa os gêneros de filmes
     enum Genero {
         ACAO, COMEDIA, DRAMA, FICCAO_CIENTIFICA
     }
     
-    // Classe base Filme
+    //Classe base Filme
     class Filme {
         private String titulo;
         private Genero genero;
@@ -1169,7 +1169,7 @@ Exercício 4 Etapa 3 - Generics Class
         }
     }
     
-    // Subclasse de Filme para testar wildcard
+    //Subclasse de Filme para testar wildcard
     class FilmeInfantil extends Filme {
         public FilmeInfantil(String titulo, Genero genero) {
             super(titulo, genero);
@@ -1177,7 +1177,7 @@ Exercício 4 Etapa 3 - Generics Class
     }
     
     public class AulaGenerics {
-        // Método genérico que aceita listas de Filme ou de suas subclasses
+        //Método genérico que aceita listas de Filme ou de suas subclasses
         public static void imprimirListaFilmes(List<? extends Filme> lista) {
             System.out.println("Lista de Filmes:");
             for (Filme filme : lista) {
@@ -1186,33 +1186,303 @@ Exercício 4 Etapa 3 - Generics Class
         }
     
         public static void main(String[] args) {
-            // Usando a classe genérica com String
+            //Usando a classe genérica com String
             Caixa<String> caixaString = new Caixa<>();
             caixaString.adicionar("Java para Iniciantes");
             System.out.println("Conteúdo da caixa de String: " + caixaString.obter());
     
-            // Usando a classe genérica com Integer
+            //Usando a classe genérica com Integer
             Caixa<Integer> caixaInteger = new Caixa<>();
             caixaInteger.adicionar(123);
             System.out.println("Conteúdo da caixa de Integer: " + caixaInteger.obter());
     
-            // Demonstração de segurança de tipos
-            // caixaString.adicionar(100); // ERRO: tipo incompatível (descomente para ver o erro de compilação)
+            //Demonstração de segurança de tipos
+            //caixaString.adicionar(100); //ERRO: tipo incompatível (descomente para ver o erro de compilação)
     
-            // Criando lista de filmes
+            //Criando lista de filmes
             List<Filme> filmes = new ArrayList<>();
             filmes.add(new Filme("O Chamado", Genero.ACAO));
             filmes.add(new Filme("A Chegada", Genero.FICCAO_CIENTIFICA));
     
-            // Imprimindo lista de filmes usando wildcard
+            //Imprimindo lista de filmes usando wildcard
             imprimirListaFilmes(filmes);
     
-            // Criando lista de filmes infantis (subclasse de Filme)
+            //Criando lista de filmes infantis (subclasse de Filme)
             List<FilmeInfantil> filmesInfantis = new ArrayList<>();
             filmesInfantis.add(new FilmeInfantil("Toy Story", Genero.COMEDIA));
             filmesInfantis.add(new FilmeInfantil("Divertida Mente", Genero.DRAMA));
     
-            // Imprimindo lista de filmes infantis usando o mesmo método genérico
+            //Imprimindo lista de filmes infantis usando o mesmo método genérico
             imprimirListaFilmes(filmesInfantis);
+        }
+    }
+
+Exercício 1 Etapa 4 - Analise URL
+
+    import java.util.Scanner;
+    
+    public class AnaliseURL {
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+    
+            //Entrada da URL
+            System.out.print("Digite a URL: ");
+            String url = scanner.nextLine();
+    
+            System.out.println("\nURL em análise: " + url);
+            System.out.println("----------------------------------------");
+    
+            //Verificar protocolo
+            boolean usaHttp = url.startsWith("http://");
+            boolean usaHttps = url.startsWith("https://");
+    
+            System.out.println("Usa HTTPS? " + usaHttps);
+            System.out.println("Usa HTTP?  " + usaHttp);
+    
+            //Verificar se contém ".com"
+            boolean isComercial = url.contains(".com");
+            System.out.println("Contém .com? " + isComercial);
+    
+            //Extrair domínio
+            int inicioProtocolo = url.indexOf("://");
+            int inicioDominio = inicioProtocolo + 3;
+            int fimDominio = url.indexOf("/", inicioDominio);
+    
+            if (fimDominio == -1) {
+                fimDominio = url.length();
+            }
+    
+            String dominio = url.substring(inicioDominio, fimDominio);
+    
+            System.out.println("----------------------------------------");
+            System.out.println("Domínio extraído: " + dominio);
+        }
+    }
+
+Exercício 2 Etapa 4 - Parsing Registro
+
+    public class ParsingRegistro {
+        public static void main(String[] args) {
+            //Registro fornecido
+            String registro = "007;Juan Carlo;Java Programming;10";
+    
+            System.out.println("Registro Original: " + registro);
+            System.out.println("----------------------------------------");
+    
+            //Separar os dados usando split()
+            String[] dados = registro.split(";");
+    
+            //Verificar se o registro tem exatamente 4 partes
+            if (dados.length == 4) {
+                String matricula = dados[0];
+                String nome = dados[1].toUpperCase(); // 2. Nome em maiúsculas
+                String curso = dados[2];
+                String nota = dados[3]; // 3. Nota como último elemento
+    
+                //Exibir os dados formatados
+                System.out.println("Matrícula: " + matricula);
+                System.out.println("Nome:      " + nome);
+                System.out.println("Curso:     " + curso);
+                System.out.println("Nota:      " + nota);
+            } else {
+                System.out.println("Erro: O formato do registro não corresponde ao esperado.");
+            }
+        }
+    }
+
+Exercício 3 Etapa 4 - Construtor Email
+
+    public class ConstrutorEmail {
+        public static void main(String[] args) {
+            //Array de destinatários
+            String[] destinatarios = {
+                "ana@dominio.com",
+                "beto@dominio.com",
+                "carla@dominio.com",
+                "daniel@dominio.com"
+            };
+    
+            System.out.println("Lista de Destinatários:");
+    
+            //Criar StringBuilder vazio
+            StringBuilder listaEmails = new StringBuilder();
+    
+            //Adicionar cada e-mail seguido de ponto e vírgula
+            for (String email : destinatarios) {
+                listaEmails.append(email);
+                listaEmails.append(";"); // delimitador
+            }
+    
+            //Exibir string com delimitador extra
+            System.out.println("String construída (com delimitador extra): " + listaEmails.toString());
+    
+            //Remover o último caractere (;)
+            if (listaEmails.length() > 0) {
+                listaEmails.deleteCharAt(listaEmails.length() - 1);
+            }
+    
+            System.out.println("----------------------------------------");
+    
+            //Imprimir a string final convertida
+            String resultadoFinal = listaEmails.toString();
+            System.out.println("Lista de E-mails Final: " + resultadoFinal);
+        }
+    }
+
+Exercício 4 Etapa 4 - Validação Código Numerico
+
+    import java.util.regex.Pattern;
+    import java.util.regex.Matcher;
+    
+    public class ValidacaoCodigoNumerico {
+        public static void main(String[] args) {
+            //Expressão regular: exatamente 6 dígitos
+            String regex = "\\d{6}";
+            Pattern padrao = Pattern.compile(regex);
+    
+            //Exemplos de códigos para teste
+            String[] codigos = {
+                "123456",   //Válido
+                "12345",    //Inválido (5 dígitos)
+                "12345a",   //Inválido (contém letra)
+                "1234567",  //Inválido (7 dígitos)
+                "000000"    //Válido
+            };
+    
+            System.out.println("Padrão de validação: " + regex);
+            System.out.println("----------------------------------------");
+    
+            //Testar cada código
+            for (String codigo : codigos) {
+                testarCodigo(padrao, codigo);
+            }
+        }
+    
+        public static void testarCodigo(Pattern padrao, String codigo) {
+            Matcher matcher = padrao.matcher(codigo);
+            boolean valido = matcher.matches();
+    
+            System.out.printf("Código '%s': %s%n", codigo, valido ? "VÁLIDO" : "INVÁLIDO");
+        }
+    }
+
+Exercício 5 Etapa 4 - Buscar Palavras Longas
+
+    import java.util.regex.Pattern;
+    import java.util.regex.Matcher;
+    
+    public class BuscarPalavrasLongas {
+        public static void main(String[] args) {
+            //Texto de exemplo, não utilize acentuação
+            String texto = "Este e um exercicio sobre Java e Expressoes Regulares em programacao.";
+    
+            //Expressão regular: palavras com 5 ou mais caracteres
+            String regex = "\\w{5,}";
+    
+            //Compilar o padrão e criar o matcher
+            Pattern padrao = Pattern.compile(regex);
+            Matcher matcher = padrao.matcher(texto);
+    
+            System.out.println("Texto em análise: " + texto);
+            System.out.println("----------------------------------------");
+            System.out.println("Palavras com 5 ou mais caracteres:");
+    
+            int contador = 0;
+    
+            //Loop para encontrar todas as ocorrências
+            while (matcher.find()) {
+                String palavra = matcher.group();
+                System.out.println(" - " + palavra);
+                contador++;
+            }
+    
+            System.out.println("----------------------------------------");
+            System.out.println("Total de palavras longas encontradas: " + contador);
+        }
+    }
+
+Exercício 6 Etapa 4 - Extração de Datas
+
+    import java.util.regex.Pattern;
+    import java.util.regex.Matcher;
+    
+    public class ExtracaoData {
+        public static void main(String[] args) {
+            //Texto contendo uma data no formato DD/MM/AAAA
+            String texto = "A reunião está marcada para 30/09/2025, anote aí.";
+    
+            //Expressão regular com três grupos de captura: dia, mês e ano
+            String regex = "(\\d{2})/(\\d{2})/(\\d{4})";
+    
+            //Compilar o padrão e criar o matcher
+            Pattern padrao = Pattern.compile(regex);
+            Matcher matcher = padrao.matcher(texto);
+    
+            System.out.println("Texto Original: " + texto);
+            System.out.println("Padrão: " + regex);
+            System.out.println("----------------------------------------");
+    
+            //Verificar se há correspondência
+            if (matcher.find()) {
+                String dia = matcher.group(1);   // Grupo 1: dia
+                String mes = matcher.group(2);   // Grupo 2: mês
+                String ano = matcher.group(3);   // Grupo 3: ano
+    
+                System.out.println("Data completa encontrada: " + matcher.group(0));
+                System.out.println("Dia (Grupo 1): " + dia);
+                System.out.println("Mês (Grupo 2): " + mes);
+                System.out.println("Ano (Grupo 3): " + ano);
+            } else {
+                System.out.println("Data não encontrada no formato DD/MM/AAAA.");
+            }
+        }
+    }
+
+Exercício 7 Etapa 4 - Reverter String Recursiva
+
+    public class ReverterStringRecursiva {
+        public static void main(String[] args) {
+            String original = "JAVAPROGRAMMING";
+            String invertida = reverterString(original);
+    
+            System.out.println("String Original: " + original);
+            System.out.println("----------------------------------------");
+            System.out.println("String Invertida: " + invertida);
+    
+            //Extra: comparação com potência recursiva e iterativa
+            int base = 2;
+            int expoente = 10;
+    
+            int resultadoRecursivo = potenciaRecursiva(base, expoente);
+            int resultadoIterativo = potenciaIterativa(base, expoente);
+    
+            System.out.println("\nBase: " + base + ", Expoente: " + expoente);
+            System.out.println("----------------------------------------");
+            System.out.println("Resultado Recursivo: " + resultadoRecursivo);
+            System.out.println("Resultado Iterativo: " + resultadoIterativo);
+        }
+    
+        //Método recursivo para inverter uma string
+        public static String reverterString(String texto) {
+            if (texto == null || texto.length() <= 1) {
+                return texto; // Caso base
+            }
+            //Chamada recursiva: último caractere + reverso do restante
+            return reverterString(texto.substring(1)) + texto.charAt(0);
+        }
+    
+        //Método recursivo para calcular potência
+        public static int potenciaRecursiva(int base, int expoente) {
+            if (expoente == 0) return 1;
+            return base * potenciaRecursiva(base, expoente - 1);
+        }
+    
+        //Método iterativo para calcular potência
+        public static int potenciaIterativa(int base, int expoente) {
+            int resultado = 1;
+            for (int i = 0; i < expoente; i++) {
+                resultado *= base;
+            }
+            return resultado;
         }
     }
