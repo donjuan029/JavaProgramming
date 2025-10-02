@@ -1770,3 +1770,38 @@ Exercício 6 Etapa 5 - Leitura Simples de Arquivo
             }
         }
     }
+
+Exercício 7 Etapa 5 - Escrita Binária
+
+# Nesse caso o código cria a escrita no arquivo seguinte ("dados_brutos.dat")
+
+    import java.io.FileOutputStream;
+    import java.io.IOException;
+    
+    public class EscritaBinaria {
+    
+        public static void main(String[] args) {
+    
+            //Define os dados a serem gravados no arquivo (valores em formato binário)
+            byte[] dadosBinarios = {10, 20, 30, 40, 50, 60, 70};
+            String caminhoArquivo = "dados_brutos.dat";
+    
+            System.out.println("Gravando " + dadosBinarios.length + " bytes no arquivo: " + caminhoArquivo);
+    
+            //Utiliza try-with-resources para garantir o fechamento automático do stream
+            try (FileOutputStream fos = new FileOutputStream(caminhoArquivo)) {
+    
+                //Grava o array de bytes no arquivo
+                fos.write(dadosBinarios);
+    
+                System.out.println("Gravação concluída com sucesso.");
+    
+            } catch (IOException e) {
+                //Trata falhas de escrita ou acesso ao arquivo
+                System.err.println("Erro ao gravar no arquivo: " + e.getMessage());
+            }
+    
+            //Observação: o arquivo gerado contém dados binários.
+            //Ao abrir como texto, os bytes podem aparecer como símbolos ou caracteres ilegíveis.
+        }
+    }
