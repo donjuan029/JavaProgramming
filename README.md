@@ -1816,7 +1816,7 @@ Exercício 8 Etapa 5 - Produto
      * Classe Produto preparada para serialização.
      * Representa um item com nome, preço e código (não serializável).
      */
-    public class Produto implements Serializable {
+    public class Produto2 implements Serializable {
     
         @Serial
         private static final long serialVersionUID = 1L;
@@ -1832,7 +1832,7 @@ Exercício 8 Etapa 5 - Produto
         private transient int codigo;
     
         //Construtor
-        public Produto(String nome, double preco, int codigo) {
+        public Produto2(String nome, double preco, int codigo) {
             this.nome = Objects.requireNonNull(nome, "Nome não pode ser nulo");
             this.preco = preco;
             this.codigo = codigo;
@@ -1861,15 +1861,15 @@ Exercício 8 Etapa 5 - Produto
         @Override
         public boolean equals(Object obj) {
             if (this == obj) return true;
-            if (!(obj instanceof Produto)) return false;
-            Produto other = (Produto) obj;
+            if (!(obj instanceof Produto2)) return false;
+            Produto2 other = (Produto2) obj;
             return Double.compare(preco, other.preco) == 0 &&
                    Objects.equals(nome, other.nome);
                    //'codigo' é ignorado por ser transient
         }
-    
-        @Override
-        public int hashCode() {
-            return Objects.hash(nome, preco);
-        }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, preco);
     }
+}
