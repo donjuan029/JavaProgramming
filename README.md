@@ -1805,3 +1805,71 @@ Exercício 7 Etapa 5 - Escrita Binária
             //Ao abrir como texto, os bytes podem aparecer como símbolos ou caracteres ilegíveis.
         }
     }
+
+Exercício 8 Etapa 5 - Produto
+
+    import java.io.Serial;
+    import java.io.Serializable;
+    import java.util.Objects;
+    
+    /**
+     * Classe Produto preparada para serialização.
+     * Representa um item com nome, preço e código (não serializável).
+     */
+    public class Produto implements Serializable {
+    
+        @Serial
+        private static final long serialVersionUID = 1L;
+    
+        private final String nome;
+        private final double preco;
+    
+        /**
+         * Campo marcado como 'transient':
+         * Não será incluído na serialização.
+         * Ideal para dados sensíveis ou temporários.
+         */
+        private transient int codigo;
+    
+        //Construtor
+        public Produto(String nome, double preco, int codigo) {
+            this.nome = Objects.requireNonNull(nome, "Nome não pode ser nulo");
+            this.preco = preco;
+            this.codigo = codigo;
+        }
+    
+        //Getters
+        public String getNome() {
+            return nome;
+        }
+    
+        public double getPreco() {
+            return preco;
+        }
+    
+        public int getCodigo() {
+            return codigo;
+        }
+    
+        //toString aprimorado
+        @Override
+        public String toString() {
+            return String.format("Produto {nome='%s', preco=%.2f, codigo=%d}", nome, preco, codigo);
+        }
+    
+        //equals e hashCode para comparação e uso em coleções
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) return true;
+            if (!(obj instanceof Produto)) return false;
+            Produto other = (Produto) obj;
+            return Double.compare(preco, other.preco) == 0 &&
+                   Objects.equals(nome, other.nome);
+                   //'codigo' é ignorado por ser transient
+        }
+    
+        @Override
+        public int hashCode() {
+            return Objects.hash(nome, preco);
+        }
+    }
