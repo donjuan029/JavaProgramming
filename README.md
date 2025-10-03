@@ -1808,68 +1808,119 @@ Exercício 7 Etapa 5 - Escrita Binária
 
 Exercício 8 Etapa 5 - Produto
 
-    import java.io.Serial;
-    import java.io.Serializable;
-    import java.util.Objects;
+        import java.io.Serial;
+        import java.io.Serializable;
+        import java.util.Objects;
+        
+        /**
+         * Classe Produto preparada para serialização.
+         * Representa um item com nome, preço e código (não serializável).
+         */
+        public class Produto2 implements Serializable {
+        
+            @Serial
+            private static final long serialVersionUID = 1L;
+        
+            private final String nome;
+            private final double preco;
+        
+            /**
+             * Campo marcado como 'transient':
+             * Não será incluído na serialização.
+             * Ideal para dados sensíveis ou temporários.
+             */
+            private transient int codigo;
+        
+            //Construtor
+            public Produto2(String nome, double preco, int codigo) {
+                this.nome = Objects.requireNonNull(nome, "Nome não pode ser nulo");
+                this.preco = preco;
+                this.codigo = codigo;
+            }
+        
+            //Getters
+            public String getNome() {
+                return nome;
+            }
+        
+            public double getPreco() {
+                return preco;
+            }
+        
+            public int getCodigo() {
+                return codigo;
+            }
+        
+            //toString aprimorado
+            @Override
+            public String toString() {
+                return String.format("Produto {nome='%s', preco=%.2f, codigo=%d}", nome, preco, codigo);
+            }
+        
+            //equals e hashCode para comparação e uso em coleções
+            @Override
+            public boolean equals(Object obj) {
+                if (this == obj) return true;
+                if (!(obj instanceof Produto2)) return false;
+                Produto2 other = (Produto2) obj;
+                return Double.compare(preco, other.preco) == 0 &&
+                       Objects.equals(nome, other.nome);
+                       //'codigo' é ignorado por ser transient
+            }
+    
+        @Override
+        public int hashCode() {
+            return Objects.hash(nome, preco);
+        }
+    }
+
+Exercício 9 Etapa 5 - Numerador de Linhas
+
+    import java.io.BufferedReader;
+    import java.io.BufferedWriter;
+    import java.io.FileReader;
+    import java.io.FileWriter;
+    import java.io.IOException;
     
     /**
-     * Classe Produto preparada para serialização.
-     * Representa um item com nome, preço e código (não serializável).
+     * Lê um arquivo de texto linha por linha e grava em outro arquivo,
+     * prefixando cada linha com seu número correspondente.
      */
-    public class Produto2 implements Serializable {
+    public class NumeradorDeLinhas {
     
-        @Serial
-        private static final long serialVersionUID = 1L;
+        private static final String ARQUIVO_ENTRADA = "entrada.txt";
+        private static final String ARQUIVO_SAIDA = "saida_numerada.txt";
     
-        private final String nome;
-        private final double preco;
+        public static void main(String[] args) {
+            System.out.println("Iniciando processamento do arquivo: " + ARQUIVO_ENTRADA);
+            System.out.println("Gerando arquivo de saída: " + ARQUIVO_SAIDA + "\n");
     
-        /**
-         * Campo marcado como 'transient':
-         * Não será incluído na serialização.
-         * Ideal para dados sensíveis ou temporários.
-         */
-        private transient int codigo;
+            int numeroLinha = 1;
     
-        //Construtor
-        public Produto2(String nome, double preco, int codigo) {
-            this.nome = Objects.requireNonNull(nome, "Nome não pode ser nulo");
-            this.preco = preco;
-            this.codigo = codigo;
+            //Try-with-resources garante fechamento automático dos streams
+            try (
+                BufferedReader leitor = new BufferedReader(new FileReader(ARQUIVO_ENTRADA));
+                BufferedWriter escritor = new BufferedWriter(new FileWriter(ARQUIVO_SAIDA))
+            ) {
+                String linha;
+    
+                while ((linha = leitor.readLine()) != null) {
+                    //Constrói a linha numerada com eficiência
+                    StringBuilder linhaNumerada = new StringBuilder();
+                    linhaNumerada.append(numeroLinha).append(": ").append(linha);
+    
+                    escritor.write(linhaNumerada.toString());
+                    escritor.newLine();
+    
+                    System.out.println("✔ Linha " + numeroLinha + " processada: " + linha);
+                    numeroLinha++;
+                }
+    
+            } catch (IOException e) {
+                System.err.println("Erro durante o processamento: " + e.getMessage());
+                return;
+            }
+    
+            System.out.println("\nProcessamento concluído. Total de " + (numeroLinha - 1) + " linhas gravadas.");
         }
-    
-        //Getters
-        public String getNome() {
-            return nome;
-        }
-    
-        public double getPreco() {
-            return preco;
-        }
-    
-        public int getCodigo() {
-            return codigo;
-        }
-    
-        //toString aprimorado
-        @Override
-        public String toString() {
-            return String.format("Produto {nome='%s', preco=%.2f, codigo=%d}", nome, preco, codigo);
-        }
-    
-        //equals e hashCode para comparação e uso em coleções
-        @Override
-        public boolean equals(Object obj) {
-            if (this == obj) return true;
-            if (!(obj instanceof Produto2)) return false;
-            Produto2 other = (Produto2) obj;
-            return Double.compare(preco, other.preco) == 0 &&
-                   Objects.equals(nome, other.nome);
-                   //'codigo' é ignorado por ser transient
-        }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(nome, preco);
     }
-}
