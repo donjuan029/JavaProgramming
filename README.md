@@ -2062,3 +2062,106 @@ Exercício 11 Etapa 5 - Aplicação Decorator (Esse exercício precisa ser desen
             }
         }
     }
+
+Exercício 12 Etapa 5 -  Implantação de Aplicações, Packages e Banco de Dados em Java.
+
+Estrutura de Pastas e Arquivos
+
+    br/
+    └── com/
+        └── estoque/
+            ├── app/
+            │   └── Main.java
+            ├── modelo/
+            │   └── Produto.java
+            └── servico/
+                └── ServicoEstoque.java
+
+Conteúdo de cada arquivo
+
+Produto.java (em br/com/estoque/modelo/)
+
+    package br.com.estoque.modelo;
+    
+    /**
+     * Classe de Modelo (Dados): Representa um item no estoque.
+     */
+    public class Produto {
+        private String nome;
+        private int quantidade;
+    
+        public Produto(String nome, int quantidade) {
+            this.nome = nome;
+            this.quantidade = quantidade;
+        }
+    
+        public String getNome() {
+            return nome;
+        }
+    
+        public int getQuantidade() {
+            return quantidade;
+        }
+    
+        public void adicionarEstoque(int valor) {
+            this.quantidade += valor;
+        }
+    
+        @Override
+        public String toString() {
+            return nome + " (Qtd: " + quantidade + ")";
+        }
+    }
+
+ServicoEstoque.java (em br/com/estoque/servico/)
+
+    package br.com.estoque.servico;
+    
+    import br.com.estoque.modelo.Produto;
+    
+    /**
+     * Classe de Serviço (Lógica): Contém regras de negócio.
+     */
+    public class ServicoEstoque {
+    
+        public void adicionarProduto(Produto p, int valor) {
+            if (valor > 0) {
+                p.adicionarEstoque(valor);
+                System.out.println("LOG: Adicionado " + valor + " unidades de " + p.getNome() + ".");
+            } else {
+                System.out.println("LOG: Valor de adição deve ser positivo.");
+            }
+        }
+    }
+
+Main.java (em br/com/estoque/app/)
+
+    package br.com.estoque.app;
+    
+    import br.com.estoque.modelo.Produto;
+    import br.com.estoque.servico.ServicoEstoque;
+    
+    /**
+     * Classe Principal da Aplicação (App): Ponto de entrada.
+     */
+    public class Main {
+    
+        public static void main(String[] args) {
+            System.out.println("--- ESTRUTURA DE PACKAGES ---");
+            System.out.println("Aplicação Principal: br.com.estoque.app");
+            System.out.println("Modelo de Dados:     br.com.estoque.modelo");
+            System.out.println("Lógica de Negócio:   br.com.estoque.servico");
+            System.out.println("-----------------------------\n");
+    
+            Produto livro = new Produto("Livro Java Avançado", 10);
+            ServicoEstoque servico = new ServicoEstoque();
+    
+            System.out.println("Produto antes da operação: " + livro);
+            servico.adicionarProduto(livro, 5);
+            System.out.println("Produto após a operação:  " + livro);
+        }
+    }
+
+
+
+
