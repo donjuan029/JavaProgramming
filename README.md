@@ -2063,7 +2063,7 @@ Exercício 11 Etapa 5 - Aplicação Decorator (Esse exercício precisa ser desen
         }
     }
 
-Exercício 12 Etapa 5 -  Implantação de Aplicações, Packages e Banco de Dados em Java.
+Exercício 12 Etapa 5 -  Produto - Serviço - Estoque - Main (Implantação de Aplicações, Packages e Banco de Dados em Java)
 
 Estrutura de Pastas e Arquivos
 
@@ -2162,6 +2162,77 @@ Main.java (em br/com/estoque/app/)
         }
     }
 
+Exercício 13 Etapa 5 - DatabaseConfig - ProdutoDAO - AplicacaoConfig (Input and Output &  Deploying an Application)
+
+Estrutura do Projeto 
+
+    infra/
+    └── data/
+        ├── DatabaseConfig.java
+        └── ProdutoDAO.java
+    AplicacaoConfig.java
+
+infra/data/DatabaseConfig.java
+
+    package infra.data;
+    
+    /**
+     * Classe que armazena as configurações de conexão com o banco de dados.
+     */
+    public class DatabaseConfig {
+    
+        public static final String DB_URL = "jdbc:mysql://localhost:3306/estoque_db";
+        public static final String DB_USER = "usuario_app";
+        public static final String DB_PASSWORD = "senha123";
+    
+        private DatabaseConfig() {
+            // Impede instanciamento da classe
+        }
+    }
+
+infra/data/ProdutoDAO.java
+
+    package infra.data;
+    
+    /**
+     * Classe ProdutoDAO (Data Access Object).
+     * Responsável por operações relacionadas à entidade Produto.
+     */
+    public class ProdutoDAO {
+    
+        public ProdutoDAO() {
+            System.out.println("ProdutoDAO inicializado.");
+        }
+    
+        public void conectar() {
+            System.out.println("\nTentando conectar ao banco de dados...");
+            System.out.println("URL: " + DatabaseConfig.DB_URL);
+            System.out.println("Usuário: " + DatabaseConfig.DB_USER);
+            System.out.println("Senha: " + DatabaseConfig.DB_PASSWORD);
+            System.out.println("Conexão simulada com sucesso!");
+        }
+    }
+
+AplicacaoConfig.java
+
+    import infra.data.DatabaseConfig;
+    import infra.data.ProdutoDAO;
+    
+    public class AplicacaoConfig {
+    
+        public static void main(String[] args) {
+            System.out.println("--- DEMONSTRAÇÃO DE ACESSO ÀS CONSTANTES ---");
+    
+            System.out.println("1. Acessando DB_URL: " + DatabaseConfig.DB_URL);
+            System.out.println("2. Acessando DB_USER: " + DatabaseConfig.DB_USER);
+            System.out.println("3. Acessando DB_PASSWORD: " + DatabaseConfig.DB_PASSWORD);
+    
+            System.out.println("\n-------------------------------------------");
+    
+            ProdutoDAO dao = new ProdutoDAO();
+            dao.conectar();
+        }
+    }
 
 
 
