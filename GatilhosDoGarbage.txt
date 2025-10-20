@@ -1,0 +1,4 @@
+| Evento   | Tipo de GC Provavelmente Disparado | Racional (Gatilho e Escopo)                                           |
+|----------|-------------------------------------|------------------------------------------------------------------------|
+| Evento A | Minor GC                            | Ocorre quando a Geração Jovem (Eden Space) fica cheia. Limpa apenas a Geração Jovem. |
+| Evento B | Major GC (ou Full GC)               | Ocorre quando a Geração Antiga (Tenured) fica muito cheia. Limpa todo o Heap, incluindo as duas gerações. |

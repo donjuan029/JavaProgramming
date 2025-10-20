@@ -1,0 +1,6 @@
+| Alternativa | Exceção ou Erro                                      | Causa Principal                                                                 |
+|-------------|------------------------------------------------------|----------------------------------------------------------------------------------|
+| A           | java.lang.StackOverflowError                         | Incorreta: não há chamadas recursivas ou profundidade excessiva de métodos.  |
+| B           | java.lang.NullPointerException                       | Incorreta: nenhum objeto é null ou acessado indevidamente.                   |
+| C           | java.lang.OutOfMemoryError: Java heap space          | Correta: o Heap é esgotado por objetos mantidos vivos via referência estática. |
+| D           | java.lang.OutOfMemoryError: Metaspace                | Incorreta: o Metaspace armazena metadados de classes, não arrays de dados.   |

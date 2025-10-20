@@ -1,0 +1,7 @@
+| Elemento                                 | Onde a Variável/Referência reside | Onde o Valor/Objeto reside         |
+|------------------------------------------|-----------------------------------|------------------------------------|
+| Estrutura da Classe (AlocacaoMemoria3)   | N/A                               | Method Area / Metaspace            |
+| Campo Estático (MAX_VALOR)               | Method Area / Metaspace           | Method Area / Metaspace            |
+| Loop `for` e variável `i`                | Stack (Frame do método `main`)    | Stack                              |
+| Objeto `new String("Objeto " + i)`       | Stack (referência)                | Heap                               |
+| Método `main()`                          | Stack (Frame criado na chamada)   | Código reside na Method Area       |

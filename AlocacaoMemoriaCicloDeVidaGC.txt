@@ -1,0 +1,4 @@
+| Objeto/Localização | Área Inicial de Alocação no Heap | Onde o objeto vai se (e quando) for coletado? | Onde o Objeto será promovido, se sobreviver? |
+|--------------------|----------------------------------|-----------------------------------------------|----------------------------------------------|
+| Objeto 1 (objA)    | Geração Jovem (Eden)             | Coletado na primeira ou segunda coleta        | N/A (Será coletado)                          |
+| Objeto 2 (objB)    | Geração Jovem (Eden)             | N/A (Vive devido à referência estática)       | Geração Antiga (Tenured)                     |

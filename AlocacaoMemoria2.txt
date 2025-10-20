@@ -1,0 +1,11 @@
+| Evento                                                        | Frame / Localização na Stack         | Observação sobre Heap                      |
+|---------------------------------------------------------------|--------------------------------------|--------------------------------------------|
+| `main()` é chamado                                            | Frame 1                              |                                            |
+| Variável A (`String s`) é armazenada                          | Frame 1                              | Valor `"Inicial"` está no Heap             |
+| `chamarMetodoB()` é chamado                                   | Frame 2 (sobre Frame 1)              |                                            |
+| Parâmetro `x` e variável `flag`                               | Frame 2                              |                                            |
+| `chamarMetodoC()` é chamado                                   | Frame 3 (sobre Frame 2)              |                                            |
+| Parâmetros `a`, `b` e variável `resultado`                    | Frame 3                              |                                            |
+| Após retorno de `chamarMetodoC()` → Frame 3 destruído         | Frame 3 removido                     | Memória de `a`, `b`, `resultado` liberada  |
+| Após retorno de `chamarMetodoB()` → Frame 2 destruído         | Frame 2 removido                     |                                            |
+| Após término de `main()` → Frame 1 destruído                  | Frame 1 removido                     |                                            |
