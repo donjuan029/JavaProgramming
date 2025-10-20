@@ -1,0 +1,7 @@
+| Tipo de Dado Oracle/SQL | Tipo Java Recomendado     | Método ResultSet              |
+|-------------------------|---------------------------|-------------------------------|
+| VARCHAR2 ou CHAR        | String                    | rs.getString(colName)         |
+| NUMBER (inteiro)        | int ou Integer            | rs.getInt(colName)            |
+| NUMBER (decimal)        | double ou BigDecimal      | rs.getDouble(colName) ou rs.getBigDecimal(colName) |
+| DATE ou TIMESTAMP       | java.sql.Date ou Timestamp| rs.getDate(colName) ou rs.getTimestamp(colName)    |
+| BLOB                    | java.sql.Blob             | rs.getBlob(colName)           |

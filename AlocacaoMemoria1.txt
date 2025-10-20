@@ -1,0 +1,8 @@
+| Elemento                             | Onde a Variável/Referência reside | Onde o Valor/Objeto reside       |
+|-------------------------------------|-----------------------------------|----------------------------------|
+| Estrutura da Classe (AlocacaoMemoria1) | N/A                               | Method Area / Metaspace          |
+| VARIÁVEL A (NOME_CLASSE)            | Method Area / Metaspace           | Heap                             |
+| VARIÁVEL B (preco)                  | Stack                             | Stack                            |
+| VARIÁVEL C ("Monitor LED")          | Stack                             | Heap                             |
+| VARIÁVEL D (meuProduto - referência)| Stack                             | Heap                             |
+| Objeto new Produto(...)             | N/A                               | Heap                             |
