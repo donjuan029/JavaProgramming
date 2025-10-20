@@ -2263,3 +2263,325 @@ Exercício 15 Eatapa 5 - Como criar um JAR Executável
     java -jar estoque-app.jar
     Este comando instrui a JVM a executar o arquivo JAR especificado, usando o Main-Class definido no seu arquivo MANIFEST.MF como o ponto de partida.
 
+Exercício 1 Etapa 6 - Teste Conexão (Conexão Inicial JDBC) obs.: Apenas um teste de conexão que deve gerar um erro... (Para conexão exata tem que link um host válido)
+
+    import java.sql.Connection;
+    import java.sql.DriverManager;
+    import java.sql.SQLException;
+    import java.sql.Statement;
+    import java.sql.ResultSet;
+    
+    public class TesteConexao {
+    
+        //Defina as constantes de conexão
+        private static final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
+        private static final String USUARIO = "system";
+        private static final String SENHA = "oracle";
+    
+        public static void main(String[] args) {
+    
+            //Declarar as variáveis de Statement e ResultSet
+            Statement stmt = null;
+            ResultSet rs = null;
+    
+            //Usar try-with-resources para garantir o fechamento automático da conexão
+            try (Connection conn = DriverManager.getConnection(URL, USUARIO, SENHA)) {
+    
+                //Mensagem de sucesso
+                System.out.println("Conexão estabelecida com sucesso!");
+    
+                //Verificação adicional
+                if (conn != null && !conn.isClosed()) {
+                    System.out.println("Conexão está aberta e pronta para uso.");
+                }
+    
+            } catch (SQLException e) {
+                //Tratamento de erro específico de SQL
+                System.err.println("ERRO: Falha ao estabelecer a conexão JDBC.");
+                System.err.println("Código SQL State: " + e.getSQLState());
+                System.err.println("Mensagem: " + e.getMessage());
+    
+            } catch (Exception e) {
+                //Tratamento de erro genérico
+                System.err.println("ERRO Inesperado: " + e.getMessage());
+            }
+        }
+    }
+
+Exercício 2 Etapa 6 - Consulta Básica (Execução de Consulta e ResultSet)
+
+    import java.sql.Connection;
+    import java.sql.DriverManager;
+    import java.sql.ResultSet;
+    import java.sql.SQLException;
+    import java.sql.Statement;
+    
+    public class ConsultaBasica {
+    
+        // Constantes de Conexão
+        private static final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
+        private static final String USUARIO = "system";
+        private static final String SENHA = "oracle";
+    
+        public static void main(String[] args) {
+    
+            System.out.println("Iniciando teste de consulta JDBC...");
+    
+            //Usando try-with-resources para Connection e Statement
+            try (
+                Connection conn = DriverManager.getConnection(URL, USUARIO, SENHA);
+                Statement stmt = conn.createStatement()
+            ) {
+                System.out.println("Conexão estabelecida com sucesso.");
+    
+                //Criar a tabela se não existir
+                String sqlCreate = "BEGIN "
+                                 + "EXECUTE IMMEDIATE 'CREATE TABLE PRODUTOS (ID NUMBER PRIMARY KEY, NOME VARCHAR2(100))'; "
+                                 + "EXCEPTION WHEN OTHERS THEN "
+                                 + "IF SQLCODE != -955 THEN RAISE; END IF; "
+                                 + "END;";
+                stmt.execute(sqlCreate);
+                System.out.println("Tabela PRODUTOS verificada/criada.");
+    
+                //Executar SELECT
+                String sqlSelect = "SELECT ID, NOME FROM PRODUTOS";
+                try (ResultSet rs = stmt.executeQuery(sqlSelect)) {
+                    System.out.println("--- Resultados da Consulta ---");
+    
+                    //Iterar sobre o ResultSet
+                    while (rs.next()) {
+                        int id = rs.getInt("ID");
+                        String nome = rs.getString("NOME");
+                        System.out.println("ID: " + id + ", Nome: " + nome);
+                    }
+    
+                    System.out.println("------------------------------");
+                }
+    
+            } catch (SQLException e) {
+                System.err.println("ERRO: Falha na execução da consulta JDBC.");
+                System.err.println("Mensagem: " + e.getMessage());
+    
+            } catch (Exception e) {
+                System.err.println("ERRO Inesperado: " + e.getMessage());
+            }
+        }
+    }
+
+Exercício 3 Etapa 6 - Prepared Statement Seguro (Prevenção de SQL Injection)
+
+    import java.sql.Connection;
+    import java.sql.DriverManager;
+    import java.sql.PreparedStatement;
+    import java.sql.SQLException;
+    import java.sql.Statement;
+    
+    public class PreparedStatementSeguro {
+    
+        //Constantes de Conexão
+        private static final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
+        private static final String USUARIO = "system";
+        private static final String SENHA = "oracle";
+    
+        public static void main(String[] args) {
+    
+            //Dados de entrada simulando dados de um formulário
+            int novoId = 3;
+            String novoNome = "Teclado Mecânico";
+            double novoPreco = 450.00;
+    
+            System.out.println("Iniciando teste de INSERT seguro com JDBC...");
+    
+            try (
+                Connection conn = DriverManager.getConnection(URL, USUARIO, SENHA)
+            ) {
+                //Método Inseguro (Statement)
+                String sqlInseguro = "INSERT INTO PRODUTOS (ID, NOME, PRECO) VALUES (" 
+                                   + novoId + ", '" + novoNome + "', " + novoPreco + ")";
+                
+                try (Statement stmtInseguro = conn.createStatement()) {
+                    int linhasAfetadas = stmtInseguro.executeUpdate(sqlInseguro);
+                    System.out.println("Linhas afetadas (Inseguro): " + linhasAfetadas);
+                }
+    
+                //Vulnerabilidade a SQL Injection, pois os dados do usuário são tratados como código SQL.
+    
+                //Método Seguro (PreparedStatement)
+                String sqlSeguro = "INSERT INTO PRODUTOS (ID, NOME, PRECO) VALUES (?, ?, ?)";
+    
+                try (PreparedStatement ps = conn.prepareStatement(sqlSeguro)) {
+                    ps.setInt(1, novoId);
+                    ps.setString(2, novoNome);
+                    ps.setDouble(3, novoPreco);
+    
+                    int linhasAfetadasSeguras = ps.executeUpdate();
+                    System.out.println("INSERT Seguro executado com sucesso.");
+                    System.out.println("Linhas afetadas: " + linhasAfetadasSeguras);
+                }
+    
+            } catch (SQLException e) {
+                System.err.println("ERRO: Falha na execução da operação JDBC.");
+                System.err.println("Mensagem: " + e.getMessage());
+    
+            } catch (Exception e) {
+                System.err.println("ERRO Inesperado: " + e.getMessage());
+            }
+        }
+    }
+
+Exercício 4 Etapa 6 - Teste Driver Oracle (Configuração e Uso do Driver Oracle JDBC)
+
+    import java.sql.Connection;
+    import java.sql.DriverManager;
+    import java.sql.SQLException;
+    
+    public class TesteDriverOracle {
+    
+        //Defina as constantes de conexão
+        private static final String ORACLE_URL = "jdbc:oracle:thin:@localhost:1521:XE"; // Formato JDBC Oracle Thin
+        private static final String USUARIO = "system";
+        private static final String SENHA = "oracle";
+        
+        //Defina o nome da classe do Driver
+        private static final String DRIVER_CLASS = "oracle.jdbc.driver.OracleDriver"; 
+    
+        public static void main(String[] args) {
+            
+            //Carregamento Explícito do Driver (Forma antiga)
+            try {
+                System.out.println("Tentando carregar o driver: " + DRIVER_CLASS);
+                
+                //Tenta carregar a classe do driver
+                Class.forName(DRIVER_CLASS);
+                System.out.println("Driver JDBC carregado com sucesso.");
+    
+            } catch (ClassNotFoundException e) {
+                //Trate a exceção se o driver (o arquivo ojdbcX.jar) não estiver no Classpath.
+                System.err.println("ERRO: Driver não encontrado.");
+                System.err.println("Certifique-se de que o arquivo ojdbcX.jar está no classpath do seu projeto.");
+                return; //Encerra o programa se o driver não puder ser carregado
+            }
+            
+            //Estabelecer a Conexão
+            try (
+                Connection conn = DriverManager.getConnection(ORACLE_URL, USUARIO, SENHA)
+            ) {
+                System.out.println("\nStatus: Conexão estabelecida com sucesso!");
+                
+                //Exibe informações do driver em uso (metadados da conexão)
+                System.out.println("Driver utilizado: " + conn.getMetaData().getDriverName());
+    
+            } catch (SQLException e) {
+                System.err.println("\nERRO: Falha ao conectar ao banco de dados.");
+                System.err.println("Mensagem: " + e.getMessage());
+            }
+        }
+    }
+
+Exercício 5 Etapa 6 - Dados JDBC (Mapeamento de Tipos de Dados JDBC)
+
+    | Tipo de Dado Oracle/SQL | Tipo Java Recomendado     | Método ResultSet              |
+    |-------------------------|---------------------------|-------------------------------|
+    | VARCHAR2 ou CHAR        | String                    | rs.getString(colName)         |
+    | NUMBER (inteiro)        | int ou Integer            | rs.getInt(colName)            |
+    | NUMBER (decimal)        | double ou BigDecimal      | rs.getDouble(colName) ou rs.getBigDecimal(colName) |
+    | DATE ou TIMESTAMP       | java.sql.Date ou Timestamp| rs.getDate(colName) ou rs.getTimestamp(colName)    |
+    | BLOB                    | java.sql.Blob             | rs.getBlob(colName)           |
+
+Exercício 6 Etapa 6 - Atualização Segura (Programando com JDBC)
+
+    import java.sql.Connection;
+    import java.sql.DriverManager;
+    import java.sql.PreparedStatement;
+    import java.sql.SQLException;
+    
+    public class AtualizacaoSegura {
+    
+        //Constantes de Conexão
+        private static final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
+        private static final String USUARIO = "system";
+        private static final String SENHA = "oracle";
+    
+        public static void main(String[] args) {
+    
+            //Variáveis de entrada
+            int produtoId = 101;
+            double novoPreco = 785.50;
+    
+            //Definir a instrução SQL com placeholders
+            String sql = "UPDATE PRODUTOS SET PRECO = ? WHERE ID = ?";
+    
+            System.out.println("Iniciando atualização com PreparedStatement...");
+    
+            try (
+                //Estabelece a conexão
+                Connection conn = DriverManager.getConnection(URL, USUARIO, SENHA);
+                
+                //Cria o PreparedStatement
+                PreparedStatement ps = conn.prepareStatement(sql)
+            ) {
+                //Vincula o novo preço (primeiro ?)
+                ps.setDouble(1, novoPreco);
+    
+                //Vincula o ID do produto (segundo ?)
+                ps.setInt(2, produtoId);
+    
+                //Executa a atualização
+                int linhasAfetadas = ps.executeUpdate();
+    
+                //Verifica o resultado
+                if (linhasAfetadas > 0) {
+                    System.out.println("Sucesso! " + linhasAfetadas + " linha(s) atualizada(s).");
+                } else {
+                    System.out.println("Nenhuma linha foi atualizada. Verifique se o ID " + produtoId + " existe.");
+                }
+    
+            } catch (SQLException e) {
+                System.err.println("ERRO: Falha na execução do PreparedStatement.");
+                System.err.println("Mensagem: " + e.getMessage());
+            }
+        }
+    }
+
+Exercício 1 Etapa 7 - Alocação Memoria 1 && txt (Alocação de Objetos e Primitivos) (Heap vs. Stack) 
+
+    public class AlocacaoMemoria1 {
+    
+        //VARIÁVEL A: Variável estática (parte da classe)
+        @SuppressWarnings("unused")
+        private static final String NOME_CLASSE = "Produto"; 
+    
+        @SuppressWarnings("unused")
+        public void criarProduto(int id) {
+            
+            //VARIÁVEL B: Variável local primitiva
+            double preco = 50.0; 
+            
+            //VARIÁVEL C: Objeto instanciado
+            String descricao = new String("Monitor LED");
+            
+            //VARIÁVEL D: Referência local ao objeto
+            Produto meuProduto = new Produto(id, descricao, preco); 
+            
+            //(método termina)
+        } 
+    
+        //Classe de exemplo (simplificada)
+        static class Produto {
+            int id;
+            String nome;
+            double valor;
+            public Produto(int id, String nome, double valor) {
+                this.id = id; this.nome = nome; this.valor = valor;
+            }
+        }
+    }
+
+    | Elemento                             | Onde a Variável/Referência reside | Onde o Valor/Objeto reside       |
+    |-------------------------------------|-----------------------------------|----------------------------------|
+    | Estrutura da Classe (AlocacaoMemoria1) | N/A                               | Method Area / Metaspace          |
+    | VARIÁVEL A (NOME_CLASSE)            | Method Area / Metaspace           | Heap                             |
+    | VARIÁVEL B (preco)                  | Stack                             | Stack                            |
+    | VARIÁVEL C ("Monitor LED")          | Stack                             | Heap                             |
+    | VARIÁVEL D (meuProduto - referência)| Stack                             | Heap                             |
+    | Objeto new Produto(...)             | N/A                               | Heap                             |
