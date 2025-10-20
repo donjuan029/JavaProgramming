@@ -2585,3 +2585,154 @@ Exercício 1 Etapa 7 - Alocação Memoria 1 && txt (Alocação de Objetos e Prim
     | VARIÁVEL C ("Monitor LED")          | Stack                             | Heap                             |
     | VARIÁVEL D (meuProduto - referência)| Stack                             | Heap                             |
     | Objeto new Produto(...)             | N/A                               | Heap                             |
+
+Exercício 2 Etapa 7 - Alocação Memoria 2 && txt (Frames da Pilha (Stack) e Variáveis Locais)
+
+    public class AlocacaoMemoria2 {
+        
+        //Método A
+        @SuppressWarnings("unused")
+        public static void main(String[] args) { 
+            String s = "Inicial"; //VARIÁVEL A
+            chamarMetodoB(10);     //Chamada 1
+        }
+    
+        //Método B
+        public static int chamarMetodoB(int x) { 
+            boolean flag = true; //VARIÁVEL B
+            return chamarMetodoC(x, flag); //Chamada 2
+        }
+    
+        // Método C
+        public static int chamarMetodoC(int a, boolean b) { 
+            int resultado = a * 2; //VARIÁVEL C
+            return resultado;
+        } 
+    }
+
+    | Evento                                                        | Frame / Localização na Stack         | Observação sobre Heap                      |
+    |---------------------------------------------------------------|--------------------------------------|--------------------------------------------|
+    | `main()` é chamado                                            | Frame 1                              |                                            |
+    | Variável A (`String s`) é armazenada                          | Frame 1                              | Valor `"Inicial"` está no Heap             |
+    | `chamarMetodoB()` é chamado                                   | Frame 2 (sobre Frame 1)              |                                            |
+    | Parâmetro `x` e variável `flag`                               | Frame 2                              |                                            |
+    | `chamarMetodoC()` é chamado                                   | Frame 3 (sobre Frame 2)              |                                            |
+    | Parâmetros `a`, `b` e variável `resultado`                    | Frame 3                              |                                            |
+    | Após retorno de `chamarMetodoC()` → Frame 3 destruído         | Frame 3 removido                     | Memória de `a`, `b`, `resultado` liberada  |
+    | Após retorno de `chamarMetodoB()` → Frame 2 destruído         | Frame 2 removido                     |                                            |
+    | Após término de `main()` → Frame 1 destruído                  | Frame 1 removido                     |                                            |
+
+Exercício 3 Etapa 7 - Alocação Memoria 3 && txt (Distinção entre Heap e Metaspace)
+
+    public class AlocacaoMemoria3 {
+    
+        // Campo estático (Parte da definição da classe)
+        @SuppressWarnings("unused")
+        private static final int MAX_VALOR = 1000; 
+    
+        public static void main(String[] args) {
+            // Alocação de 5 objetos no Heap
+            for (int i = 0; i < 5; i++) {
+                new String("Objeto " + i);
+            }
+        }
+    }
+
+    | Elemento                                 | Onde a Variável/Referência reside | Onde o Valor/Objeto reside         |
+    |------------------------------------------|-----------------------------------|------------------------------------|
+    | Estrutura da Classe (AlocacaoMemoria3)   | N/A                               | Method Area / Metaspace            |
+    | Campo Estático (MAX_VALOR)               | Method Area / Metaspace           | Method Area / Metaspace            |
+    | Loop `for` e variável `i`                | Stack (Frame do método `main`)    | Stack                              |
+    | Objeto `new String("Objeto " + i)`       | Stack (referência)                | Heap                               |
+    | Método `main()`                          | Stack (Frame criado na chamada)   | Código reside na Method Area       |
+
+Exercício 4 Etapa 7 - AlocacaoMemoriaCicloDeVidaGC 4 && txt (Ciclo de Vida do Objeto GC)
+
+    public class CicloDeVidaGC {
+        
+        //Objeto 1: Referência local
+        public static void processarDados() {
+            //Ponto A: O objeto é criado e alocado.
+            ObjetoGrande objA = new ObjetoGrande(1); 
+            
+            //Simula um uso curto.
+            objA.usar(); 
+            
+            //O método termina. A referência local 'objA' é perdida do Stack.
+            //O objeto no Heap está pronto para o GC.
+        }
+        
+        //Objeto 2: Objeto que sobrevive
+        public static void manterReferencia() {
+            ObjetoGrande objB = new ObjetoGrande(2); 
+            //Armazenar objB em uma lista estática (referência global)
+            Cache.adicionar(objB); 
+            //A referência 'objB' é perdida do Stack, mas o objeto VIVE devido à referência em Cache.
+        }
+    
+        //Estrutura de exemplo para simular o Cache
+        static class Cache {
+            private static java.util.List<ObjetoGrande> referencias = new java.util.ArrayList<>();
+            public static void adicionar(ObjetoGrande obj) {
+                referencias.add(obj);
+            }
+        }
+        
+        static class ObjetoGrande {
+            @SuppressWarnings("unused")
+            private int id;
+            public ObjetoGrande(int id) { this.id = id; }
+            public void usar() { /* ... */ }
+        }
+    }
+
+    | Objeto/Localização | Área Inicial de Alocação no Heap | Onde o objeto vai se (e quando) for coletado? | Onde o Objeto será promovido, se sobreviver? |
+    |--------------------|----------------------------------|-----------------------------------------------|----------------------------------------------|
+    | Objeto 1 (objA)    | Geração Jovem (Eden)             | Coletado na primeira ou segunda coleta        | N/A (Será coletado)                          |
+    | Objeto 2 (objB)    | Geração Jovem (Eden)             | N/A (Vive devido à referência estática)       | Geração Antiga (Tenured)                     |
+
+
+Exercício 5 Etapa 7 - Gatilhos do Garbage Collection (Minor vs. Full GC)
+
+    | Evento   | Tipo de GC Provavelmente Disparado | Racional (Gatilho e Escopo)                                           |
+    |----------|-------------------------------------|------------------------------------------------------------------------|
+    | Evento A | Minor GC                            | Ocorre quando a Geração Jovem (Eden Space) fica cheia. Limpa apenas a Geração Jovem. |
+    | Evento B | Major GC (ou Full GC)               | Ocorre quando a Geração Antiga (Tenured) fica muito cheia. Limpa todo o Heap, incluindo as duas gerações. |
+
+Exercício 6 Etapa 7 - OutOfMemoryError && txt (Vazamentos de Memória)
+
+    import java.util.ArrayList;
+    import java.util.List;
+    
+    public class TesteOutOfMemory {
+    
+        //Referência estática para simular um cache global
+        private static final List<byte[]> DADOS_CACHE = new ArrayList<>();
+    
+        public static void carregarDados(int quantidade) {
+            for (int i = 0; i < quantidade; i++) {
+                //Cria um novo array de 1 MB
+                byte[] bloco = new byte[1024 * 1024]; 
+                
+                //O VAZAMENTO DE MEMÓRIA: A referência ao objeto (bloco) é adicionada
+                //ao DADOS_CACHE (que é estático e nunca é limpo).
+                DADOS_CACHE.add(bloco); 
+            }
+            System.out.println("Memória consumida: " + DADOS_CACHE.size() + " MB.");
+        }
+    
+        public static void main(String[] args) {
+            //Tentativa de alocar 500 MB em um loop
+            carregarDados(500); 
+            
+            //Se a JVM tiver menos de 500MB de Heap, o erro irá ocorrer aqui.
+        }
+    }
+
+    | Alternativa | Exceção ou Erro                                      | Causa Principal                                                                 |
+    |-------------|------------------------------------------------------|----------------------------------------------------------------------------------|
+    | A           | java.lang.StackOverflowError                         | Incorreta: não há chamadas recursivas ou profundidade excessiva de métodos.  |
+    | B           | java.lang.NullPointerException                       | Incorreta: nenhum objeto é null ou acessado indevidamente.                   |
+    | C           | java.lang.OutOfMemoryError: Java heap space          | Correta: o Heap é esgotado por objetos mantidos vivos via referência estática. |
+    | D           | java.lang.OutOfMemoryError: Metaspace                | Incorreta: o Metaspace armazena metadados de classes, não arrays de dados.   |
+
